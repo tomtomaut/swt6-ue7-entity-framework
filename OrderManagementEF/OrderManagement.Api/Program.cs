@@ -55,7 +55,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
 
   //
   // TODO: Add MetiatoR
-  // TODO: Add TransactionCommandBehavior
   //
 
   services.AddAutoMapper(applicationAssemblies);

@@ -13,8 +13,23 @@ internal class FindCustomersHandler(OrderManagementContext db, IMapper mapper) :
 {
   public async Task<IEnumerable<CustomerDto>> Handle(FindCustomersQuery query, CancellationToken cancellationToken)
   {
+        var customerQuery = db.Customers
+                              .AsNoTracking()
+                              .Include(c => c.Address);
 
-        //TODO implement handler logic for FindCustomersQuery
-        return null;
+        if (query.Rating == null)
+        {
+           return await customerQuery
+                .ProjectTo<CustomerDto>(mapper.ConfigurationProvider)
+                .ToListAsync(cancellationToken: cancellationToken);
+        }
+        else
+        {
+           var domainRating = mapper.Map<Domain.Rating>(query.Rating);
+
+           //TODO implement rating query
+          
+           return null;
+        }
   }
 }

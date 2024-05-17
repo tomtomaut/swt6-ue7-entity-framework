@@ -12,6 +12,8 @@ public class CustomersController(ILogger<CustomersController> logger) : Controll
   [HttpGet]
   public Task<IEnumerable<CustomerDto>> GetCustomers(Rating? rating)
   {
+    logger.LogDebug("GetCustomers called");
+    // TODO 
     return Task.FromResult<IEnumerable<CustomerDto>>(new List<CustomerDto>());
   }
 
@@ -28,6 +30,13 @@ public class CustomersController(ILogger<CustomersController> logger) : Controll
   [HttpPost]
   public Task<ActionResult<CustomerDto>> CreateCustomer(CustomerForCreationDto customer)
   {
+    /* TODO
+      var newCustomer =await mediator.Send(new CreateCustomerCommand(customer));
+      return CreatedAtAction(actionName: nameof(GetCustomerById),
+                             routeValues: new { CustomerId = newCustomer.Id },
+                             value: newCustomer);
+    */
+
     return Task.FromResult<ActionResult<CustomerDto>>(new StatusCodeResult(StatusCodes.Status501NotImplemented));
   }
 
