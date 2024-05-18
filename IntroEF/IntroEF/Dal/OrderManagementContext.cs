@@ -16,9 +16,9 @@ namespace IntroEF.Dal
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Utils.ConfigurationUtil.GetConnectionString("OrderDbConnection"));
-                //.EnableSensitiveDataLogging()
-                //.LogTo(Console.WriteLine, LogLevel.Information);
+            optionsBuilder.UseSqlServer(Utils.ConfigurationUtil.GetConnectionString("OrderDbConnection"))
+                .EnableSensitiveDataLogging() //loggs sensitive data
+                .LogTo(Console.WriteLine, LogLevel.Information);
 
         }
 
