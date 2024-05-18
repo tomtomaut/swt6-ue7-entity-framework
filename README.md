@@ -1,9 +1,9 @@
-# bb-g1-entity-framework
+# bb-g2-entity-framework
 
 ## structure
 
 ```
-bb-g1-entity-framework
+bb-g2-entity-framework
 |
 +--IntroEF
 |
