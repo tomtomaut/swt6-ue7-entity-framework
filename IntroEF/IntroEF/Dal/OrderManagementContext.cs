@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace IntroEF.Dal
 {
     public class OrderManagementContext : DbContext
     {
 
-        // TODO define DbSets
+      public DbSet<Customer> Customers => Set<Customer>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +25,11 @@ namespace IntroEF.Dal
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          // TODO define mappings
+          modelBuilder.Entity<Customer>()
+      //      .ToTable("GiveTheTableAName")
+       //     .HasKey(c => c.Id)
+            .Property(c => c.TotalRevenue)
+            .HasPrecision(18,2);
         }
 
 
