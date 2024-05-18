@@ -30,6 +30,10 @@ public class Customer
   //[Column(TypeName = "decimal(10,2)")] alternativ OrderManagementContext
   public decimal? TotalRevenue { get; set; } //? nullable
 
+  public Address? Address { get; set; }
+
+  public IList<Order> Orders { get; set; } = new List<Order>();
+
   public override string ToString() => $"Customer {{ Id: {Id}, Name: {Name}, " +
                                        $"TotalRevenue: {TotalRevenue} }}";
 }

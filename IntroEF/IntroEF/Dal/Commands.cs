@@ -8,6 +8,8 @@ public static class Commands
   public static async Task AddCustomersAsync()
   {
     var customer1 = new Customer("Mayr Immobilien", Rating.B);
+    customer1.Address = new(4020, "Linz", "Hauptstraße 1");
+
     var customer2 = new Customer("Software Solutions", Rating.A);
 
     //await Task.CompletedTask;
@@ -29,6 +31,10 @@ public static class Commands
     foreach (var customer in customers)
     {
       Console.WriteLine(customer);
+      if (customer.Address is not null)
+      {
+        Console.WriteLine($"    {customer.Address}");
+      }
     }
   }
 

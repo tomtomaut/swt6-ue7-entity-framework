@@ -15,7 +15,7 @@ public class Address
     Street = street;
   }
 
-  public int Id { get; set; }
+ // public int Id { get; set; } not needed if embedded
   public int ZipCode { get; set; }
   public string City { get; set; }
   public string? Street { get; set; }

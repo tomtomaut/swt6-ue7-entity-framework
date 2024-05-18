@@ -1,4 +1,6 @@
-﻿namespace IntroEF.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace IntroEF.Domain;
 
 public class Order
 {
@@ -22,6 +24,15 @@ public class Order
   public DateTimeOffset OrderDate { get; set; }
 
   public decimal TotalPrice { get; set; }
+
+  [Required] // in DB
+  public Customer? Customer { get; set; }
+
+  public void AssignCustomer(Customer customer)
+  {
+    this.Customer = customer;
+    customer.Orders.Add(this);
+  }
 
   public override string ToString() => $"Order {{ Id: {Id}, Article: {Article}, OrderDate: {OrderDate:d}, TotalPrice: {TotalPrice:F2} }}";
 }
