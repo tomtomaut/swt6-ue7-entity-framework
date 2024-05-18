@@ -13,6 +13,9 @@ using (var db = new OrderManagementContext())
   PrintTitle("Adding Customers");
   await Commands.AddCustomersAsync();
 
+  PrintTitle("Adding Orders");
+  await Commands.AddOrdersAsync();
+
   PrintTitle("List Customers");
   await Commands.ListCustomersAsync();
 

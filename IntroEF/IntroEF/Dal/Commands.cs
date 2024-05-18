@@ -1,4 +1,6 @@
-﻿namespace IntroEF.Dal; 
+﻿using Microsoft.IdentityModel.Tokens;
+
+namespace IntroEF.Dal; 
 
 using IntroEF.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +28,11 @@ public static class Commands
     //await Task.CompletedTask;
     using var db = new OrderManagementContext();
 
-    var customers = await db.Customers.AsNoTracking().ToListAsync(); // AsNoTracking -> readOnly, forget Entities
+    var customers = await db.Customers
+      .AsNoTracking() // AsNoTracking -> readOnly, forget Entities
+      .Include(c => c.Address) //not necessary -> embedded
+      .Include(c => c.Orders) // Fetching orders
+      .ToListAsync();
 
     foreach (var customer in customers)
     {
@@ -35,12 +41,21 @@ public static class Commands
       {
         Console.WriteLine($"    {customer.Address}");
       }
+
+      Console.WriteLine("Orders");
+      if (!customer.Orders.IsNullOrEmpty())
+      {
+        foreach (var order in customer.Orders)
+        {
+          Console.WriteLine($"    {order}");
+        }
+
+      }
     }
   }
 
   public static async Task AddOrdersAsync()
   {
-    /*
     using var db = new OrderManagementContext();
 
     var customer = await db.Customers.OrderBy(c => c.Id).FirstOrDefaultAsync();
@@ -57,6 +72,6 @@ public static class Commands
 
     await db.Orders.AddRangeAsync(order1, order2);
     await db.SaveChangesAsync();
-    */
+    
   }
 }

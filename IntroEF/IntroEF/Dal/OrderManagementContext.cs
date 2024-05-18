@@ -13,9 +13,10 @@ namespace IntroEF.Dal
     public class OrderManagementContext : DbContext
     {
 
-      public DbSet<Customer> Customers => Set<Customer>();
+      public DbSet<Customer> Customers => Set<Customer>(); //explicite Verwaltung
+      public DbSet<Order> Orders => Set<Order>();
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(Utils.ConfigurationUtil.GetConnectionString("OrderDbConnection"))
                 .EnableSensitiveDataLogging() //loggs sensitive data
