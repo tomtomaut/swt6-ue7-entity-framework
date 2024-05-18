@@ -27,7 +27,7 @@ public class Customer
   public string Name { get; set; }
   public Rating Rating { get; set; }
   //[Column("Ref")]
-  //[Column(TypeName = "decimal(10,2)"] alternativ OrderManagementContext
+  //[Column(TypeName = "decimal(10,2)")] alternativ OrderManagementContext
   public decimal? TotalRevenue { get; set; } //? nullable
 
   public override string ToString() => $"Customer {{ Id: {Id}, Name: {Name}, " +
